@@ -12,7 +12,7 @@ AESD_ASSIGNMENTS_SOCKET_VERSION = 0eedf304b6f2aaee29fb60a849fc2a370cfc9f9a
 # with ssh keys and the automated build/test system.
 # Your site should start with git@github.com:
 AESD_ASSIGNMENTS_SOCKET_SITE = git@github.com:cu-ecen-aeld/assignments-3-and-later-Andrej220.git
-AESD_ASSIGNMENTS_SOCKET_OVERRIDE_SRCDIR = /home/andrey/assignment52/server
+AESD_ASSIGNMENTS_SOCKET_OVERRIDE_SRCDIR = $(TOPDIR)/../server
 #'#GITHUB REPOSITORY LINK'
 AESD_ASSIGNMENTS_SOCKET_SITE_METHOD = git
 AESD_ASSIGNMENTS_SOCKET_GIT_SUBMODULES = YES
