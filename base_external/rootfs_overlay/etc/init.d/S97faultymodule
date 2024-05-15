@@ -1,0 +1,98 @@
+#!/bin/sh
+
+# Load and unload skull module
+
+mode="664"
+group="root"
+
+scullmodule_load () {
+	dev=$1
+	mod=$2
+	insmod /lib/modules/${mod}.ko  || exit 1
+	# retrieve major number
+	major=$(awk "\$2==\"$mod\" {print \$1}" /proc/devices)
+
+	loadmodule "${dev}0" $major 0
+	loadmodule "${dev}1" $major 1
+	loadmodule "${dev}2" $major 2
+	loadmodule "${dev}3" $major 3
+	ln -sf ${dev}0 /dev/${dev}
+
+	rm -f /dev/${dev}pipe[0-3]
+	loadmodule "${dev}pipe0" $major 4
+	loadmodule "${dev}pipe1" $major 5
+	loadmodule "${dev}pipe2" $major 6
+	loadmodule "${dev}pipe3" $major 7
+	ln -sf ${dev}pipe0 /dev/${dev}pipe
+
+	loadmodule "${dev}single" $major 8
+	loadmodule "${dev}uid" $major 9
+	loadmodule "${dev}priv" $major 11
+}
+
+scullmodule_unload () {
+	dev=$1
+	mod=$2
+	rmmod $mod || exit 1	
+	# Remove stale nodes
+	rm -f /dev/${dev} /dev/${dev}[0-3]
+	rm -f /dev/${dev}priv
+	rm -f /dev/${dev}pipe /dev/${dev}pipe[0-3]
+	rm -f /dev/${dev}single
+	rm -f /dev/${dev}uid
+	rm -f /dev/${dev}wuid
+}
+
+faultymodule_load (){
+	fdev=$1
+	fmod=$2
+	insmod /lib/modules/${fmod}.ko  || exit 1
+	# retrieve major number
+	major=$(awk "\$2==\"$fmod\" {print \$1}" /proc/devices)
+	loadmodule "${fdev}"  ${major} "0"
+}
+
+faultymodule_unload () {
+	fdev=$1
+	fmod=$2
+	rmmod $fmod || exit 1
+	rm -f /dev/${fdev}
+} 
+
+loadmodule () {
+	_dev=$1
+	major=$2
+	minor=$3
+	mode="664"
+	group="root" 
+
+	echo "Remove any existing /dev node for /dev/${_dev}"
+	rm -f /dev/${_dev}
+	echo "Add a node for our device at /dev/${_dev} using mknod"
+	mknod /dev/${_dev} c $major $minor
+	echo "Change group owner  /dev/${_dev} to ${group}"
+	chgrp $group /dev/${_dev}
+	echo "Change access mode  /dev/${_dev} to ${mode}"
+	chmod $mode  /dev/${_dev}
+}
+
+case "$1" in
+	start)
+		echo "Loading module scull"
+		scullmodule_load "scull" "scull" 
+		echo "Loading module faulty"
+		faultymodule_load "faulty" "faulty"
+		;;
+
+	stop)
+		echo "Unloading modules scull and faulty"
+		scullmodule_unload "scull" "scull"
+		faultymodule_unload "faulty" "faulty"
+		;;
+	*)
+		echo "Usage: $0 {start|stop}"
+esac
+
+exit 0
+
+
