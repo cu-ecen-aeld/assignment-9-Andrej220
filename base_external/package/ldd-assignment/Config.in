@@ -1,5 +1,4 @@
 config BR2_PACKAGE_LDD_ASSIGNMENT
 	bool "ldd-assignment"
-	depends on BR2_LINUX-KERNEL
 	help
 	  Includes ldd based assignment7
