@@ -1,3 +1,3 @@
 source "$BR2_EXTERNAL_project_base_PATH/package/aesd-assignments/Config.in"
 source "$BR2_EXTERNAL_project_base_PATH/package/aesd-assignments-socket/Config.in"
-source "$BR2_EXTERNAL_project_base_PATH/package/ldd-assignment/Config.in"
+source "$BR2_EXTERNAL_project_base_PATH/package/aesdchar-assignment/Config.in"
