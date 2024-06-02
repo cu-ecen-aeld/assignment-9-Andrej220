@@ -23,8 +23,8 @@ endef
 
 $(eval $(kernel-module))
 define AESDCHAR_ASSIGNMENT_INSTALL_TARGET_CMDS
-		$(INSTALL) -d $(TARGET_DIR)/lib/modules/
-		$(INSTALL) -m 0644 $(@D)/aesd-char-driver/aesdchar.ko $(TARGET_DIR)/lib/modules/
+		$(INSTALL) -d $(TARGET_DIR)/lib/modules/$(LINUX_VERSION_PROBED)/kernel/drivers/char/
+		$(INSTALL) -m 0644 $(@D)/aesd-char-driver/aesdchar.ko $(TARGET_DIR)/lib/modules/$(LINUX_VERSION_PROBED)/kernel/drivers/char/
 		$(INSTALL) -m 0744 $(@D)/aesd-char-driver/aesdchar_load $(TARGET_DIR)/etc/init.d/S96aesdchar_load
 
 endef
