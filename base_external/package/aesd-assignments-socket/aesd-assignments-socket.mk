@@ -6,13 +6,13 @@
 ##############################################################
 
 #TODO: Fill up the contents below in order to reference your assignment 3 git contents
-AESD_ASSIGNMENTS_SOCKET_VERSION = d5fa99dbfb2fd9546ee729ce8569e3bd99ca51e9
+AESD_ASSIGNMENTS_SOCKET_VERSION = 870ffc425a7853c0c04f60c4632e09e5f4d6891a
 #'#COMMIT VERSION NUMBER'
 # Note: Be sure to reference the *ssh* repository URL here (not https) to work properly
 # with ssh keys and the automated build/test system.
 # Your site should start with git@github.com:
 AESD_ASSIGNMENTS_SOCKET_SITE = git@github.com:cu-ecen-aeld/assignments-3-and-later-Andrej220.git
-#AESD_ASSIGNMENTS_SOCKET_OVERRIDE_SRCDIR = $(TOPDIR)/../server
+#AESD_ASSIGNMENTS_SOCKET_OVERRIDE_SRCDIR = $(TOPDIR)/../../assignments-3-and-later-Andrej220
 #'#GITHUB REPOSITORY LINK'
 AESD_ASSIGNMENTS_SOCKET_SITE_METHOD = git
 AESD_ASSIGNMENTS_SOCKET_GIT_SUBMODULES = YES

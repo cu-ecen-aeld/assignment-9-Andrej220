@@ -5,9 +5,9 @@
 #
 ##############################################################
 
-AESDCHAR_ASSIGNMENT_VERSION = 9b5133d8c080d3074e5f1a925251697ec62dd95d
+AESDCHAR_ASSIGNMENT_VERSION = 870ffc425a7853c0c04f60c4632e09e5f4d6891a
 AESDCHAR_ASSIGNMENT_SITE = git@github.com:cu-ecen-aeld/assignments-3-and-later-Andrej220.git
-#AESDCHAR_ASSIGNMENT_OVERRIDE_SRCDIR = $(TOPDIR)/../../assignments-3-and-later-Andrej220/aesd-char-driver
+#AESDCHAR_ASSIGNMENT_OVERRIDE_SRCDIR = $(TOPDIR)/../../assignments-3-and-later-Andrej220
 #'#GITHUB REPOSITORY LINK'
 AESDCHAR_ASSIGNMENT_SITE_METHOD = git
 AESDCHAR_ASSIGNMENT_GIT_SUBMODULES = YES
